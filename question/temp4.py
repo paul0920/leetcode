@@ -14,6 +14,8 @@ N = len(A)
 
 t = 3
 
+N = 100
+
 for i in range(N**2):
     print i, "  ", i/N, i%N
     print i/N + i%N
