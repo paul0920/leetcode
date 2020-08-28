@@ -1,16 +1,22 @@
 import collections
 
-equations = [["a", "b"], ["b", "c"]]
-values = [2.0, 3.0]
 
-g = collections.defaultdict(dict)
-for (x, y), v in zip(equations, values):
-    g[x][y] = v
-    g[y][x] = 1 / v
+s = "QQWE"
 
-print g
+count = collections.Counter(s)
+res = n = len(s)
+i = 0
+
+for j, c in enumerate(s):
+    count[c] -= 1
+
+    print [n / 4 >= count[c] for c in 'QWER']
+    # print all([n / 4 >= count[c] for c in 'QWER'])
 
 
+    while i < n and all(n / 4 >= count[c] for c in 'QWER'):
+        res = min(res, j - i + 1)
+        count[s[i]] += 1
+        i += 1
 
-for idx, (a, b) in enumerate(equations):
-    print idx, a, b
+print res
