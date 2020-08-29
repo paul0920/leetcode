@@ -1,28 +1,25 @@
 import collections
 
-tree = [1, 2, 3, 2, 2]
+A = [84,-37,32,40,95]
+K = 167
 
-h_map = collections.defaultdict(int)
-res = 0
-start = 0
-count = 0
+d = collections.deque([[0, 0]])
+res, cur = float('inf'), 0
+for i, a in enumerate(A):
+    cur += a
 
-for idx, n in enumerate(tree):
+    print cur, d, cur - d[0][1]
 
-    if not h_map[n]:
-        count += 1
+    while d and cur - d[0][1] >= K:
 
-    h_map[n] += 1
+        print cur, d[0], cur - d[0][1]
+        res = min(res, i + 1 - d.popleft()[0])
 
-    while count > 2:
+    while d and cur <= d[-1][1]:
+        d.pop()
 
-        h_map[tree[start]] -= 1
+    d.append([i + 1, cur])
 
-        if not h_map[tree[start]]:
-            count -= 1
+print res if res < float('inf') else -1
 
-        start += 1
 
-    res = max(res, idx - start + 1)
-
-print res

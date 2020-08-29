@@ -1,25 +1,23 @@
 import collections
 
+A = [2, 1, 2, 4, 2, 2]
+B = [5, 2, 6, 2, 3, 2]
 
-s = "QWER"
-# s = "QRWWQQRQ"
 
+s = "paper"
+t = "title"
 
-count = collections.Counter(s)
-res = len(s)
-s_len = len(s)
-start = 0
+h_s = collections.defaultdict(list)
+h_t = collections.defaultdict(list)
 
 for idx, c in enumerate(s):
+    h_s[c].append(idx)
 
-    count[c] -= 1
+for idx, c in enumerate(t):
+    h_t[c].append(idx)
 
-    # Remember to include "start < s_len" statement
-    while start < s_len and all(n <= len(s) / 4 for n in count.values()):
+print h_s
+print h_t
 
-        # Keep tracking the window size in the while loop!
-        res = min(res, idx - start + 1)
-        count[s[start]] += 1
-        start += 1
-
-print res
+print sorted([arr for arr in h_s.values()])
+print sorted([arr for arr in h_t.values()])
