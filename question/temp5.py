@@ -1,6 +1,5 @@
-A ={'a', 'b', 'c', 'd'}
 
-print A.pop()
-print A.pop()
-print A.pop()
-print A.pop()
+a = -0.2
+b = 2
+
+print a or b
