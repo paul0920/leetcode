@@ -9,3 +9,14 @@ print a & b
 print a.intersection(b)
 
 print a | b | c
+
+
+p = set([1])
+q = [1, 2, 3, 4]
+
+print p
+
+
+p |= set(q)
+
+print p
