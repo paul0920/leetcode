@@ -16,28 +16,19 @@ root.right.left = TreeNode(6)
 root.right.left.left = TreeNode(9)
 root.right.left.right = TreeNode(10)
 
-res = []
-visited = set()
-
-
-def check(node):
-    if not node in visited:
-        res.append(node.val)
-        visited.add(node)
-
 
 if not root:
     print []
-    exit()
 
-check(root)
+leftmost = [root]
 node = root.left
 
 while node:
-    check(node)
+    leftmost += [node]
     node = node.left or node.right
 
 stack = [root]
+leaves = []
 
 while stack:
     node = stack.pop()
@@ -49,7 +40,7 @@ while stack:
         stack.append(node.left)
 
     if not node.left and not node.right:
-        check(node)
+        leaves += [node]
 
 rightmost = [root]
 node = root.right
@@ -58,7 +49,16 @@ while node:
     rightmost += [node]
     node = node.right or node.left
 
-for node in rightmost[::-1]:
+res = []
+visited = set()
+
+def check(node):
+    if not node in visited:
+        res.append(node.val)
+        visited.add(node)
+
+
+for node in leftmost + leaves + rightmost[::-1]:
     check(node)
 
 print res
