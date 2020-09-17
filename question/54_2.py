@@ -22,7 +22,7 @@ res = []
 while matrix:
 
     # Left to right
-    res.extend(matrix.pop(0))
+    res += matrix.pop(0)
 
     # Top to bottom
     if matrix and matrix[0]:
@@ -31,7 +31,7 @@ while matrix:
 
     # Right to left
     if matrix:
-        res.extend(matrix.pop()[::-1])
+        res += matrix.pop()[::-1]
 
     # Bottom to top
     if matrix and matrix[0]:

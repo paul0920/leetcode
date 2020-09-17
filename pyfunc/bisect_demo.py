@@ -21,6 +21,10 @@ print bisect.bisect_left(a, 20)
 print ""
 
 
+################################################################
+# Check 324_median_1.py for the correct binary search template
+################################################################
+
 
 left = 0
 right = len(a) - 1
@@ -40,5 +44,9 @@ while left < right:
 
 
 # 1)                    a[left - 1] <= v < a[left] --> bisect.bisect_right
+#                       a[left - 1] <= v < a[right]
+#
 # 2) a[left - 1] < v <= a[left] --> bisect.bisect_left
+#    a[left - 1] < v <= a[right]
 print left
+
