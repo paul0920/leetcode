@@ -1,4 +1,6 @@
+
 s = "2-(5-6)"
+# s = "2-5-6"
 
 res, num = 0, 0
 stack = []
@@ -10,6 +12,7 @@ for c in s:
         num = num * 10 + int(c)
 
     elif c in ["+", "-"]:
+        # process the previous num
         res += sign * num
         num = 0
 
@@ -26,6 +29,8 @@ for c in s:
     elif c == ")":
         res = stack.pop(-2) + stack.pop(-1) * (res + sign * num)
         num = 0
+
+    print stack
 
 res += sign * num
 
