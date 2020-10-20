@@ -14,6 +14,9 @@ class Trie(object):
 		:type word: str
 		:rtype: None
 		"""
+
+		# Although this changes "self", it won't change the value of self in other methods
+		# self still points to origin instance
 		for c in word:
 			self = self.children.setdefault(c, Trie())
 
