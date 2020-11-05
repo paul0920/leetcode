@@ -1,22 +1,22 @@
 # Time complexity: O(len(S))
-import collections
 
 S = "ababcbacadefegdehijhklij"
 
-box = collections.defaultdict(int)
+
+lookup_table = {}
 start = 0
 end = 0
 res = []
 
-for idx, c in enumerate(S):
-    box[c] = idx
+for i, c in enumerate(S):
+    lookup_table[c] = i
 
-for idx, c in enumerate(S):
+for i, c in enumerate(S):
 
-    end = max(end, box[c])
+    end = max(end, lookup_table[c])
 
-    if idx == end:
-        res.append(end - start + 1)
+    if end == i:
+        res += [end - start + 1]
         start = end + 1
 
 print res
