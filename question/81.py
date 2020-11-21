@@ -3,8 +3,8 @@
 # target = 3
 # nums = [4, 5, 6, 7, 0, 1, 2]
 # target = 0
-nums = [1]
-target = 1
+nums = [1, 1, 3, 1]
+target = 3
 
 
 left = 0
@@ -17,8 +17,12 @@ while left <= right:
     mid = (left + right) / 2
 
     if nums[mid] == target:
-        print mid
+        print True
         exit()
+
+    # fail to estimate which side is sorted
+    if nums[mid] == nums[right]:
+        right -= 1
 
     # check whether this section is sorted, mid -> right
     elif nums[mid] > nums[right]:
@@ -27,7 +31,7 @@ while left <= right:
         if nums[left] <= target < nums[mid]:
 
             if nums[left] == target:
-                print left
+                print True
                 exit()
 
             else:
@@ -44,7 +48,7 @@ while left <= right:
         if nums[mid] < target <= nums[right]:
 
             if nums[right] == target:
-                print right
+                print True
                 exit()
 
             else:
@@ -53,4 +57,4 @@ while left <= right:
         else:
             right = mid - 1
 
-print -1
+print False
