@@ -1,13 +1,12 @@
-
 # This is O(n) 1 pass in-place solution
 # Lomuto partition algorithm
 
-nums = [2,0,2,1,1,0]
+nums = [2, 0, 2, 1, 1, 0]
 
 i = j = 0
 for k in xrange(len(nums)):
 
-    print i, j ,k
+    print i, j, k
     print nums
 
     v = nums[k]
