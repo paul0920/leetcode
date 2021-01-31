@@ -14,24 +14,23 @@ class Solution:
     """
 
     def findSubtree(self, root):
-        # write your code here
-        min_subtree_sum, subtree, subtree_sum = self.calculate_tree(root)
+        subtree, subtree_sum, min_subtree_sum = self.calculate_tree(root)
 
         return subtree
 
     def calculate_tree(self, root):
         if not root:
-            return float("INF"), root, 0
+            return root, 0, float("INF")
 
-        min_left_sum, left_tree, left_sum = self.calculate_tree(root.left)
-        min_right_sum, right_tree, right_sum = self.calculate_tree(root.right)
+        left, left_sum, min_left_sum = self.calculate_tree(root.left)
+        right, right_sum, min_right_sum = self.calculate_tree(root.right)
 
         root_sum = left_sum + right_sum + root.val
 
         if min_left_sum == min(min_left_sum, min_right_sum, root_sum):
-            return min_left_sum, left_tree, root_sum
+            return left, root_sum, min_left_sum
 
         if min_right_sum == min(min_left_sum, min_right_sum, root_sum):
-            return min_right_sum, right_tree, root_sum
+            return right, root_sum, min_right_sum
 
-        return root_sum, root, root_sum
+        return root, root_sum, root_sum
