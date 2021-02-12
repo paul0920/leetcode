@@ -1,4 +1,4 @@
-# Time complexity: O(n x a x sqrt(value)), a = factor counts
+# Time complexity: O(n x sqrt(value))
 
 def largestDivisibleSubset(nums):
     """
