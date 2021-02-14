@@ -1,3 +1,7 @@
+# Time complexity: O(k^n), k = directions, n = steps
+import collections
+
+
 def shortestPath2(grid):
     # write your code here
     if not grid or not grid[0]:
@@ -5,35 +9,61 @@ def shortestPath2(grid):
 
     n = len(grid)
     m = len(grid[0])
-    dp = [[float("INF")] * 3 for _ in range(n)]
-    dp[0][0] = 0
-    DIRECTIONS = [(2, -1), (1, -2), (-1, -2), (-2, -1)]
 
-    # The index has to be started with 1 instead of 0
-    # due to the usage of rotational array
-    for j in range(1, m):
-        for i in range(n):
+    if grid[n - 1][m - 1]:
+        return -1
+    if n * m == 1:
+        return 0
 
-            # Need to initialize and clean up the previous old data
-            dp[i][j % 3] = float("INF")
+    forward_queue = collections.deque([(0, 0)])
+    forward_visited = set([(0, 0)])
+    FORWARD_DIRECTIONS = [
+        (-2, 1),
+        (-1, 2),
+        (1, 2),
+        (2, 1)
+    ]
+    # distance = {(0, 0): 0}
+    distance = 0
 
-            if grid[i][j]:
-                continue
+    while forward_queue:
+        distance += 1
 
-            for dx, dy in DIRECTIONS:
-                x = i + dx
-                y = j + dy
+        # Remember to have the following loop to just loop through the current layer
+        for _ in range(len(forward_queue)):
+            curr_x, curr_y = forward_queue.popleft()
 
-                if x < 0 or x >= n or y < 0 or y >= m:
+            for dx, dy in FORWARD_DIRECTIONS:
+                x = curr_x + dx
+                y = curr_y + dy
+
+                if not is_valid(x, y, grid, forward_visited):
                     continue
 
-                dp[i][j % 3] = min(dp[i][j % 3], dp[x][y % 3] + 1)
+                if (x, y) == (n - 1, m - 1):
+                    return distance
 
-    # for row in dp:
-    #     print row
+                forward_visited.add((x, y))
+                forward_queue.append((x, y))
 
-    return dp[n - 1][(m - 1) % 3] if dp[n - 1][(m - 1) % 3] != float("INF") else -1
+    return -1
 
 
-nums = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
-print shortestPath2(nums)
+def is_valid(x, y, grid, visited):
+    if x < 0 or x >= len(grid):
+        return False
+
+    if y < 0 or y >= len(grid[0]):
+        return False
+
+    if grid[x][y]:
+        return False
+
+    if (x, y) in visited:
+        return False
+
+    return True
+
+
+grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+print shortestPath2(grid)
