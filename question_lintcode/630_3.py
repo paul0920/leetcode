@@ -1,4 +1,7 @@
-# Time complexity: O( sqrt(k^n) ), k = directions, n = steps
+# Time complexity:
+# the average case: O(sqrt(mn))
+# the worst case: O(mn)
+
 import collections
 
 

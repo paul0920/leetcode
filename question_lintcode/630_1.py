@@ -1,4 +1,6 @@
-# Time complexity: O(k^n), k = directions, n = steps
+# Time complexity: O(mn)
+# Space complexity: O(sqrt(mn))
+
 import collections
 
 
