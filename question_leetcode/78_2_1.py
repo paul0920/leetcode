@@ -1,5 +1,3 @@
-# BFS
-
 def subsets(nums):
     """
     :type nums: List[int]
@@ -11,18 +9,13 @@ def subsets(nums):
     nums.sort()
     queue = [[]]
 
-    # Sort nums first
     for num in nums:
         for i in range(len(queue)):
-            # Remember to do deep copy
-            subset = list(queue[i])
-            subset.append(num)
+            subset = queue[i] + [num]
             queue.append(subset)
 
     return queue
 
 
 nums = [1, 2, 3]
-nums = [3, 2, 1]
-
 print subsets(nums)

@@ -7,14 +7,23 @@ def subsets(nums):
         return [[]]
 
     nums.sort()
-    queue = [[]]
+    res = []
+    dfs(nums, 0, [], res)
 
-    for num in nums:
-        for i in range(len(queue)):
-            subset = queue[i] + [num]
-            queue.append(subset)
+    return res
 
-    return queue
+
+def dfs(nums, index, path, res):
+    if index == len(nums):
+        res.append(list(path))
+
+        return
+
+    path.append(nums[index])
+    dfs(nums, index + 1, path, res)
+
+    path.pop()
+    dfs(nums, index + 1, path, res)
 
 
 nums = [1, 2, 3]

@@ -14,16 +14,12 @@ def subsets(nums):
 
 
 def dfs(nums, index, path, res):
-    if index == len(nums):
-        res.append(list(path))
+    res.append(list(path))
 
-        return
-
-    path.append(nums[index])
-    dfs(nums, index + 1, path, res)
-
-    path.pop()
-    dfs(nums, index + 1, path, res)
+    for i in range(index, len(nums)):
+        path.append(nums[i])
+        dfs(nums, i + 1, path, res)
+        path.pop()
 
 
 nums = [1, 2, 3]
