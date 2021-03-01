@@ -1,3 +1,6 @@
+import collections
+
+
 def subsets(nums):
     """
     :type nums: List[int]
@@ -7,23 +10,23 @@ def subsets(nums):
         return [[]]
 
     nums.sort()
-    i = 0
-    queue = [[]]
+    queue = collections.deque([[]])
+    res = []
 
-    while i < len(queue):
-        subset = queue[i]
-        i += 1
+    while queue:
+        subset = queue.popleft()
+        res.append(subset)
 
         for num in nums:
             if subset and subset[-1] >= num:
                 continue
 
-            queue.append(subset + [num])
+            subset.append(num)
+            queue.append(list(subset))
+            subset.pop()
 
-    return queue
+    return res
 
 
 nums = [1, 2, 3]
-nums = [3, 2, 1]
-
 print subsets(nums)

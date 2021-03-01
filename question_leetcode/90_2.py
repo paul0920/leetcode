@@ -15,20 +15,21 @@ def subsetsWithDup(nums):
     res = []
 
     while queue:
-        subset, pool = queue.popleft()
+        subset, candidates = queue.popleft()
         # print id(subset)
         res.append(subset)
 
-        for i in range(len(pool)):
-            if i > 0 and pool[i - 1] == pool[i]:
+        for i, num in enumerate(candidates):
+            if i > 0 and candidates[i] == candidates[i - 1]:
                 continue
 
-            queue.append((subset + [pool[i]], pool[i + 1:]))
+            subset.append(num)
+            queue.append((list(subset), candidates[i + 1:]))
+            subset.pop()
 
     return res
 
 
 nums = [1, 2, 3]
-nums = [1, 3, 2, 1]
-
+nums = [1, 2, 2]
 print subsetsWithDup(nums)

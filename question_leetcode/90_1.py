@@ -20,7 +20,7 @@ def subsetsWithDup(nums):
 def dfs(nums, idx, subset, res):
     # Remember to do deep copy (subset[:])
     # print id(subset)
-    res.append(subset[:])
+    res.append(list(subset))
 
     for i in range(idx, len(nums)):
 
