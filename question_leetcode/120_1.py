@@ -1,21 +1,22 @@
+# DFS: traverse. TLE
+# Time complexity: O(2^n), n: triangle layer counts
+
 def minimumTotal(triangle):
     """
     :type triangle: List[List[int]]
     :rtype: int
     """
-    n = len(triangle)
-    dp = [[0] * (i + 1) for i in range(n)]
-    dp[0][0] = triangle[0][0]
+    return dfs(triangle, 0, 0, 0, float("INF"))
 
-    for i in range(1, n):
-        dp[i][0] = triangle[i][0] + dp[i - 1][0]
-        dp[i][i] = triangle[i][i] + dp[i - 1][i - 1]
 
-    for i in range(2, n):
-        for j in range(1, i):
-            dp[i][j] = triangle[i][j] + min(dp[i - 1][j], dp[i - 1][j - 1])
+def dfs(triangle, x, y, path_sum, min_sum):
+    if x == len(triangle):
+        return min(min_sum, path_sum)
 
-    return min(dp[-1])
+    path_sum += triangle[x][y]
+
+    return min(dfs(triangle, x + 1, y, path_sum, min_sum),
+               dfs(triangle, x + 1, y + 1, path_sum, min_sum))
 
 
 triangle = [[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]
