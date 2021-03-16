@@ -1,4 +1,5 @@
-# Time complexity: O(nL), n = total cases, L = max_length
+# Time complexity: O(nL), n = len(s), L = max_length
+# It may be stack overflow. Use DP instead.
 
 def wordBreak(s, wordDict):
     """
