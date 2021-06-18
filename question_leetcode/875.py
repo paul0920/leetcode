@@ -16,7 +16,7 @@ def minEatingSpeed(piles, H):
         mid = left + (right - left) // 2
 
         # get_hours(left) > H >= get_hours(right)
-        if get_hours(mid, piles) > H:
+        if get_hours(mid, piles) > H:  # Put "mid" instead of "left" into get_hours()
             left = mid
 
         else:
