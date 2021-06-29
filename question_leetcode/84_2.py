@@ -1,4 +1,3 @@
-
 heights = [2, 1, 5, 6, 2, 3]
 
 # Put a dummy bar, 0, in the heights

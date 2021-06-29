@@ -3,8 +3,8 @@ import collections
 s = "cabwefgewcwaefgcf"
 t = "cae"
 
-#s = "ADOBECODEBANC"
-#t = "ABC"
+s = "ADOBECODEBANC"
+t = "ABC"
 
 #s = "ab"
 #t = "a"
