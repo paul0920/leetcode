@@ -1,30 +1,35 @@
 import collections
 
-S = "aad"
 
-if len(S) == 1:
-    print S
+def reorganizeString(s):
+    """
+    :type s: str
+    :rtype: str
+    """
+    if not s or len(s) == 1:
+        return s
 
-count = collections.Counter(S)
+    char_to_count = collections.Counter(s)
+    # key (optional) - key function where the iterables are passed
+    # and comparison is performed based on its return value
+    max_freq_char = max(char_to_count.keys(), key=lambda x: char_to_count[x])
+    max_count = char_to_count[max_freq_char]
+    res = [max_freq_char] * max_count
+    i = 0
 
-# key (optional) - key function where the iterables are passed
-# and comparison is performed based on its return value
-digit0 = max(count.keys(), key=lambda x: count[x])
+    for char, count in char_to_count.items():
+        if char == max_freq_char:
+            continue
 
-print count
-print digit0
-
-an = [digit0 for _ in range(count[digit0])]
-
-print an
-
-i = 0
-for digit in count:
-    if digit != digit0:
-        for _ in range(count[digit]):
-            an[i % len(an)] += digit
-            print an, i
+        for _ in range(count):
+            res[i % max_count] += char
             i += 1
 
-print "**********"
-print ''.join(an) if i >= len(an) - 1 else ''
+    string = "".join(res)
+
+    return string if i >= max_count - 1 else ""
+
+
+s = "aaab"
+s = "aab"
+print reorganizeString(s)

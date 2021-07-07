@@ -1,4 +1,3 @@
-
 s = "baabaad"
 s = "aacabdkacaa"
 # s = "cbbd"
@@ -29,6 +28,7 @@ for window_size in range(2, str_size + 1):
     for i in range(str_size - window_size + 1):
 
         j = i + window_size - 1
+        # print i, j, "*", i + 1, j - 1
         is_palindrome[i][j] = is_palindrome[i + 1][j - 1] and s[i] == s[j]
 
         if is_palindrome[i][j] and window_size > max_len:
