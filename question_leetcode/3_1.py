@@ -1,17 +1,24 @@
+def lengthOfLongestSubstring(s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    if not s:
+        return 0
+
+    char_to_start_index = {}
+    start = 0
+    max_len = 0
+
+    for i, char in enumerate(s):
+        if char in char_to_start_index:
+            start = max(start, char_to_start_index[char])
+
+        max_len = max(max_len, i - start + 1)
+        char_to_start_index[char] = i + 1
+
+    return max_len
+
 
 s = 'tmmzuxt'
-
-start = maxLength = 0
-usedChar = {}
-
-for i in range(len(s)):
-    if s[i] in usedChar: # and start <= usedChar[s[i]]:
-        start = usedChar[s[i]] + 1
-        print s[i], start
-    else:
-        print s[i], 'new'
-        maxLength = max(maxLength, i - start + 1)
-
-    usedChar[s[i]] = i
-
-print maxLength
+print lengthOfLongestSubstring(s)

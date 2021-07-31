@@ -1,24 +1,33 @@
+def trap(height):
+    """
+    :type height: List[int]
+    :rtype: int
+    """
+    if len(height) < 3:
+        return 0
+
+    left = 0
+    right = len(height) - 1
+    h_left_max = 0
+    h_right_max = 0
+    water = 0
+
+    while left < right:
+        # find the next higher walls of both ends
+        h_left_max = max(h_left_max, height[left])
+        h_right_max = max(h_right_max, height[right])
+
+        # check whether the left or right wall is higher to trap water at current index
+        if h_left_max <= h_right_max:
+            water += h_left_max - height[left]
+            left += 1
+
+        else:
+            water += h_right_max - height[right]
+            right -= 1
+
+    return water
+
+
 height = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
-
-if len(height) < 3:
-    print 0
-
-ht_l, ht_r = 0, 0
-left, right = 0, len(height) - 1
-vol = 0
-
-while left < right:
-
-    # This is to keep updating the next wall for trapping water
-    ht_l, ht_r = max(ht_l, height[left]), max(ht_r, height[right])
-
-    # This is to make sure we have the wall to maintain the water
-    if ht_l <= ht_r:
-        vol += ht_l - height[left]
-        left += 1
-
-    else:
-        vol += ht_r - height[right]
-        right -= 1
-
-print vol
+print trap(height)
