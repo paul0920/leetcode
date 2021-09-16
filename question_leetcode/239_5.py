@@ -17,13 +17,12 @@ def maxSlidingWindow(nums, k):
         if queue and i >= queue[0] + k:  # remove the leftmost in the window
             queue.popleft()
 
-        while queue:  # maintain the window being monotonic decreasing
-            prev_num = nums[queue[-1]]
+        while queue and nums[queue[-1]] <= num:  # maintain the window being monotonic decreasing
+            last_index = queue[-1]
+            last_num = nums[last_index]
 
-            if prev_num >= num:
-                break
-
-            queue.pop()
+            if last_num <= num:
+                queue.pop()
 
         queue.append(i)
 

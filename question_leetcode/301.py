@@ -36,23 +36,26 @@ def removeInvalidParentheses(s):
             return res
 
 
-def is_valid(s):
+def is_valid(string):
+    if not string:
+        return True
+
     count = 0
 
-    for char in s:
+    for char in string:
         if char not in "()":
             continue
 
         if char == "(":
             count += 1
-            continue
 
-        count -= 1
+        elif char == ")":
+            count -= 1
 
         if count < 0:
             return False
 
-    return not count
+    return count == 0
 
 
 s = "(a)())()"
